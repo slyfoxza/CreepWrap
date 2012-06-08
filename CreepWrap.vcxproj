@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 Philip Cronje. Distributed under the terms of the BSD 2-Clause License. See
+     LICENSE.txt in the source distribution for the full terms of the license. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Build"
+         ToolsVersion="4.0">
+
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|x64">
+			<Configuration>Debug</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|x64">
+			<Configuration>Release</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{D59CC45E-07D0-40af-9B5D-2B061EC12D88}</ProjectGuid>
+		<Keyword>Win32Proj</Keyword>
+	</PropertyGroup>
+
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+	<PropertyGroup Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<PlatformToolset>Windows7.1SDK</PlatformToolset>
+	</PropertyGroup>
+
+	<ImportGroup Label="PropertySheets">
+		<Import Project="CreepWrap.JNIHeaderPath.props" />
+	</ImportGroup>
+
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<WarningLevel>Level3</WarningLevel>
+		</ClCompile>
+		<Link>
+			<SubSystem>Windows</SubSystem>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+		<ClCompile>
+			<Optimization>MaxSpeed</Optimization>
+			<FunctionLevelLinking>true</FunctionLevelLinking>
+			<IntrinsicFunctions>true</IntrinsicFunctions>
+		</ClCompile>
+		<Link>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<OptimizeReferences>true</OptimizeReferences>
+		</Link>
+	</ItemDefinitionGroup>
+
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+	<ItemGroup>
+		<ClCompile Include="CreepWrap.cpp" />
+		<ClCompile Include="JVMInvoke.cpp" />
+		<ClCompile Include="JVMInvokeWindows.cpp" />
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="JVMInvoke.h" />
+		<ClInclude Include="JVMInvokeWindows.h" />
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="CreepWrap.rc" />
+	</ItemGroup>
+
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+
+</Project>
+<!-- vim: set inde= ts=4 sw=4 noet: -->

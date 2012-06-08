@@ -1,0 +1,22 @@
+# ################################################################################################ #
+#
+# Copyright (C) 2012 Philip Cronje. Distributed under the terms of the BSD 2-Clause License. See
+# LICENSE.txt in the source distribution for the full terms of the license.
+#
+# ################################################################################################ #
+CXX := x86_64-w64-mingw32-g++
+STRIP := x86_64-w64-mingw32-strip
+WINDRES := x86_64-w64-mingw32-windres
+
+CXXFLAGS := -mwin32 -municode -D_UNICODE -Wall
+LDFLAGS := -mwindows -municode -static-libgcc -static-libstdc++ -Wl,-gc-sections
+
+# Add include search path (-I) directives to this file to point to the JNI.h supplied by the JDK.
+#
+# For example, on JDK 1.7.0_03, this would be:
+#
+#     CXXFLAGS := $(CXXFLAGS) -I/cygdrive/c/Program\ Files/Java/jdk1.7.0_03/include \
+#         -I/cygdrive/c/Program\ Files/Java/jdk1.7.0_03/include/win32
+include Makefile.x86_64_mingw.local
+
+include Makefile

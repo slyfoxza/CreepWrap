@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 Philip Cronje. Distributed under the terms of the BSD 2-Clause License. See
+     LICENSE.txt in the source distribution for the full terms of the license. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>C:\Program Files\Java\jdk1.7.0_03\include;C:\Program Files\Java\jdk1.7.0_03\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+</Project>

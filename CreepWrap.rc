@@ -1,0 +1,36 @@
+/* ********************************************************************************************** */
+/*
+ * Copyright (C) 2012 Philip Cronje. Distributed under the terms of the BSD 2-Clause License. See
+ * LICENSE.txt in the source distribution for the full terms of the license.
+ */
+/* ********************************************************************************************** */
+#include <WinVer.h>
+
+VS_VERSION_INFO VERSIONINFO
+FILETYPE VFT_APP
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "040904E4"
+		BEGIN
+			VALUE "CompanyName", "Philip Cronje"
+			VALUE "FileDescription", "Minecraft wrapper"
+			VALUE "FileVersion", "1.0"
+			VALUE "InternalName", "CreepWrap"
+			VALUE "OriginalFilename", "CreepWrap.exe"
+			VALUE "ProductName", "CreepWrap"
+			VALUE "ProductVersion", "1.0"
+		END
+	END
+
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x409, 1252
+	END
+END
+
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "CreepWrap.exe.manifest"
+
+2 ICON "AppIcon.ico"

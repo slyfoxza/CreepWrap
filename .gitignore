@@ -1,0 +1,8 @@
+x64/
+
+CreepWrap.JNIHeaderPath.props
+Makefile.x86_64_mingw.local
+
+*.exe
+*.o
+*.res
