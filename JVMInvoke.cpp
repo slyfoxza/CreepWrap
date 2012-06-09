@@ -137,7 +137,24 @@ void jvminvoke::JavaVM::executeJAR(const std::string jarPath, const std::string 
 
 	}
 
-	jniEnvironment->CallStaticVoidMethod(mainClass, mainMethod);
+	jclass stringClass = jniEnvironment->FindClass("java/lang/String");
+	javaException = jniEnvironment->ExceptionOccurred();
+	if(javaException != NULL)
+	{
+		throw createJavaException("Failed to load java.lang.String class", javaException);
+
+	}
+
+	jobjectArray arguments = jniEnvironment->NewObjectArray(0, stringClass, NULL);
+	javaException = jniEnvironment->ExceptionOccurred();
+	if(javaException != NULL)
+	{
+		throw createJavaException("Failed to create arguments array for the call to main()",
+				javaException);
+
+	}
+
+	jniEnvironment->CallStaticVoidMethod(mainClass, mainMethod, arguments);
 	javaException = jniEnvironment->ExceptionOccurred();
 	if(javaException != NULL)
 	{
@@ -145,6 +162,8 @@ void jvminvoke::JavaVM::executeJAR(const std::string jarPath, const std::string 
 				javaException);
 
 	}
+
+	jniEnvironment->DeleteLocalRef(arguments);
 
 } // jvminvoke::JavaVM::executeJAR
 

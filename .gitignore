@@ -1,6 +1,12 @@
+Debug/
+ipch/
+Release/
 x64/
 
 CreepWrap.JNIHeaderPath.props
+CreepWrap.opensdf
+CreepWrap.sdf
+CreepWrap.vcxproj.user
 Makefile.x86_64_mingw.local
 
 *.exe

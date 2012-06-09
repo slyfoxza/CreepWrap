@@ -15,7 +15,8 @@
 #include "JVMInvoke.h"
 
 /* ********************************************************************************************** */
-int _tWinMain(HINSTANCE instance, HINSTANCE previousInstance, LPTSTR commandLine, int showCommand)
+int WINAPI _tWinMain(HINSTANCE instance, HINSTANCE previousInstance, LPTSTR commandLine,
+		int showCommand)
 {
 	int argc;
 	LPWSTR *argv = CommandLineToArgvW(GetCommandLine(), &argc);
@@ -33,7 +34,7 @@ int _tWinMain(HINSTANCE instance, HINSTANCE previousInstance, LPTSTR commandLine
 	{
 		jvminvoke::JavaVM javaVM;
 
-		const std::string mainClass("net/minecraft/MinecraftLauncher");
+		const std::string mainClass("net/minecraft/LauncherFrame");
 		if(argc == 1)
 		{
 			javaVM.executeJAR("Minecraft.exe", mainClass);

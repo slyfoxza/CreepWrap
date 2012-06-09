@@ -16,7 +16,7 @@ Note that CreepWrap requires the [Microsoft Visual C++ 2010 Redistributable Pack
 
 ## Building from source
 
-Currently, CreepWrap is known to successfully build using the [MinGW-w64](http://mingw-w64.sourceforge.net/) toolchain (installed via [Cygwin](http://cygwin.com)), as well as Microsoft Visual C++ 2010 Express (built from the command line using MSBuild). Only 64-bit builds of CreepWrap have been tested.
+Currently, CreepWrap is known to successfully build using the [MinGW-w64](http://mingw-w64.sourceforge.net/) toolchain (installed via [Cygwin](http://cygwin.com)), as well as Microsoft Visual C++ 2010 Express (built from the command line using MSBuild, although building from the IDE should also work).
 
 ### MinGW-w64
 
@@ -32,11 +32,11 @@ To build with MSVC++, start up a Visual Studio Command Prompt, or use the simila
 
     MSBuild /p:Platform=x64 /p:Configuration=Debug
 
-Supported values for `Configuration` are `Debug` and `Release`. Only `x64` is currently supported for the `Platform` property.
+Supported values for `Configuration` are `Debug` and `Release`. Supported values for `Platform` are `Win32` (for 32-bit platforms) and `x64`.
 
 ## Licensing
 
-Copyright (c) 2012, Philip Cronje
+Copyright (c) 2012, Philip Cronje.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
