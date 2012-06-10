@@ -8,8 +8,8 @@
 
 VS_VERSION_INFO VERSIONINFO
 FILETYPE VFT_APP
-FILEVERSION 1,0,1,0
-PRODUCTVERSION 1,0,1,0
+FILEVERSION 1,0,2,0
+PRODUCTVERSION 1,0,2,0
 BEGIN
 	BLOCK "StringFileInfo"
 	BEGIN
@@ -17,11 +17,11 @@ BEGIN
 		BEGIN
 			VALUE "CompanyName", "Philip Cronje"
 			VALUE "FileDescription", "Minecraft wrapper"
-			VALUE "FileVersion", "1.0.1"
+			VALUE "FileVersion", "1.0.2"
 			VALUE "InternalName", "CreepWrap"
 			VALUE "OriginalFilename", "CreepWrap.exe"
 			VALUE "ProductName", "CreepWrap"
-			VALUE "ProductVersion", "1.0.1"
+			VALUE "ProductVersion", "1.0.2"
 		END
 	END
 

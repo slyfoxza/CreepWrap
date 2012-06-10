@@ -29,35 +29,50 @@ namespace
 	jvminvoke::string getRegistryStringValue(const jvminvoke::string keyName,
 			const jvminvoke::string valueName)
 	{
-		DWORD bufferSize;
 		LONG returnCode;
 
-		// Retrieve the required buffer size for the value
-		returnCode = RegGetValue(HKEY_LOCAL_MACHINE, keyName.c_str(), valueName.c_str(),
-				RRF_RT_REG_SZ, NULL, NULL, &bufferSize);
+		HKEY key;
+		returnCode = RegOpenKeyEx(HKEY_LOCAL_MACHINE, keyName.c_str(), 0, KEY_READ, &key);
 		if(returnCode != ERROR_SUCCESS)
 		{
+			throw jvminvoke::RuntimeException("Failed to open registry key", returnCode);
+
+		}
+
+		DWORD bufferSize;
+
+		// Retrieve the required buffer size for the value
+		returnCode = RegQueryValueEx(key, valueName.c_str(), NULL, NULL, NULL, &bufferSize);
+		if(returnCode != ERROR_SUCCESS)
+		{
+			RegCloseKey(key);
 			throw jvminvoke::RuntimeException("Failed to read value from registry", returnCode);
 
 		}
 
-		LPTSTR bufferMemory = static_cast<LPTSTR>(std::malloc(bufferSize * sizeof(TCHAR)));
+		LPTSTR bufferMemory = static_cast<LPTSTR>(std::malloc((++bufferSize) * sizeof(TCHAR)));
 		if(bufferMemory == NULL)
 		{
+			RegCloseKey(key);
 			throw jvminvoke::Exception("Failed to allocate buffer");
 
 		}
 
 		// Retrieve the value
-		returnCode = RegGetValue(HKEY_LOCAL_MACHINE, keyName.c_str(), valueName.c_str(),
-				RRF_RT_REG_SZ, NULL, bufferMemory, &bufferSize);
+		const DWORD bufferEndIndex = bufferSize - 1;
+		returnCode = RegQueryValueEx(key, valueName.c_str(), NULL, NULL,
+				reinterpret_cast<LPBYTE>(bufferMemory), &bufferSize);
 		if(returnCode != ERROR_SUCCESS)
 		{
 			std::free(bufferMemory);
+			RegCloseKey(key);
 			throw jvminvoke::RuntimeException("Failed to read value from registry", returnCode);
 
 		}
 
+		RegCloseKey(key);
+
+		bufferMemory[bufferEndIndex] = _T('\0');
 		jvminvoke::string result(bufferMemory);
 		std::free(bufferMemory);
 		return result;
